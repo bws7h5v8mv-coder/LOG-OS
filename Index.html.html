@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="LOG OS" />
+<title>LOG OS</title>
+<style>
+:root{--blue:#5bdcff;--green:#9cff28;--dark:#020405;--muted:#31515b;--white:#f4f6f8;}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#000;color:var(--blue);font-family:"Courier New",monospace;overflow:hidden;}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 0%,rgba(91,220,255,.12),transparent 38%),linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px);background-size:auto,100% 4px;pointer-events:none;}
+.app{height:100dvh;padding:calc(env(safe-area-inset-top) + 14px) 20px calc(env(safe-area-inset-bottom) + 12px);display:flex;flex-direction:column;gap:14px;max-width:480px;margin:0 auto;}
+.header{text-align:center;font-weight:900;font-size:56px;letter-spacing:7px;text-shadow:0 0 18px rgba(91,220,255,.8);line-height:1;}
+.money{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center}.bag{font-size:40px}.total{font-size:24px;color:#eee;font-weight:800;letter-spacing:2px}.total span{color:var(--blue);font-size:32px}.goal{font-size:20px;letter-spacing:2px}.bar{height:25px;border:1.8px solid var(--blue);border-radius:5px;box-shadow:0 0 8px rgba(91,220,255,.35);overflow:hidden}.fill{height:100%;width:0%;background:var(--blue);box-shadow:0 0 18px var(--blue);transition:width .7s ease}.barLabels{display:flex;justify-content:space-between;font-size:20px;line-height:1}.timerTitle{text-align:center;color:#eee;font-size:22px;font-weight:800;letter-spacing:2px;margin-top:4px}.timer{border:1.8px solid var(--blue);border-radius:9px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:14px 4px;box-shadow:0 0 9px rgba(91,220,255,.35)}.timeBox{text-align:center}.num{font-size:42px;font-weight:900;text-shadow:0 0 12px rgba(91,220,255,.6)}.lab{font-size:15px}.mission{text-align:center;font-size:17px;letter-spacing:1px}.divider{height:1px;background:var(--green);box-shadow:0 0 8px var(--green);margin:4px 0}.search{height:39px;border:1.8px solid var(--green);border-radius:7px;display:flex;align-items:center;gap:13px;padding:0 14px;color:var(--green);font-size:18px;box-shadow:0 0 8px rgba(156,255,40,.2)}.search input{background:transparent;border:0;outline:0;color:var(--green);font:inherit;width:100%;text-transform:uppercase}.list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:3px;scroll-behavior:smooth}.list::-webkit-scrollbar{width:5px}.list::-webkit-scrollbar-thumb{background:var(--green);border-radius:10px}.item{min-height:72px;border:1.8px solid var(--green);border-radius:8px;display:flex;align-items:center;gap:18px;padding:0 18px;color:var(--green);font-size:24px;font-weight:900;letter-spacing:1.5px;box-shadow:0 0 8px rgba(156,255,40,.18);transition:all .14s ease;user-select:none}.item:active,.item.hot{background:var(--green);color:#000;transform:scale(.985);box-shadow:0 0 18px rgba(156,255,40,.55)}.folder{font-size:32px;filter:drop-shadow(0 0 4px rgba(156,255,40,.4))}.item:active .folder,.item.hot .folder{filter:none}.arrow{margin-left:auto;font-size:34px}.nav{display:grid;grid-template-columns:80px 1fr 80px;gap:14px;align-items:end}.navBtn{height:74px;border:1.8px solid var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 0 8px rgba(91,220,255,.25)}.navLabel{text-align:center;font-size:14px;margin-top:5px}.status{border:1.8px solid var(--blue);border-radius:10px;min-height:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:14px;letter-spacing:1px}.dot{color:var(--green)}.online{color:var(--green)}.screen{display:none}.screen.active{display:flex}.add{height:100dvh;flex-direction:column}.toprow{display:flex;align-items:center}.back{width:46px;height:46px;border:1.8px solid var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:34px}.chatTitle{flex:1;text-align:center;font-size:42px;font-weight:900;letter-spacing:6px;text-shadow:0 0 15px var(--blue)}.upload{font-size:25px;color:var(--green);font-weight:900;letter-spacing:1px}.terminal{flex:1;border:1.8px solid var(--green);border-radius:8px;display:flex;flex-direction:column;min-height:0}.terminalLog{flex:1;padding:18px;color:var(--green);font-size:16px;overflow-y:auto;line-height:1.55}.composer{height:72px;border-top:1.8px solid var(--green);display:flex;align-items:center;gap:14px;padding:0 16px}.composer textarea{flex:1;height:46px;background:transparent;border:0;outline:0;color:var(--green);font:18px "Courier New";resize:none}.send{width:58px;height:48px;border:1.8px solid var(--green);border-radius:8px;background:transparent;color:var(--green);font-size:30px}.mic{font-size:28px;color:var(--green)}.small{font-size:12px;color:var(--muted);text-align:center}
+@media(max-height:780px){.header{font-size:46px}.timer{padding:8px 4px}.num{font-size:34px}.item{min-height:62px}.list{gap:10px}.nav{display:none}}
+</style>
+</head>
+<body>
+<div class="app screen active" id="home">
+  <div class="header">[LOG]</div>
+  <div class="money"><div class="bag">💰</div><div><div class="total">TOTAL MADE: <span id="money">$0.00</span> CAD</div><div class="goal">GOAL: $10,000 CAD</div></div></div>
+  <div class="bar"><div class="fill" id="moneyFill"></div></div><div class="barLabels"><span>0</span><span>10,000</span></div>
+  <div class="timerTitle">TIME LEFT TO GOAL:</div>
+  <div class="timer"><div class="timeBox"><div class="num" id="d">--</div><div class="lab">DAYS</div></div><div class="timeBox"><div class="num" id="h">--</div><div class="lab">HOURS</div></div><div class="timeBox"><div class="num" id="m">--</div><div class="lab">MINUTES</div></div><div class="timeBox"><div class="num" id="s">--</div><div class="lab">SECONDS</div></div></div>
+  <div class="mission">GOAL: $10,000 CAD IN 30 DAYS</div><div class="divider"></div>
+  <div class="search">⌕ <input id="search" placeholder="SEARCH IDEAS..." /></div>
+  <div class="list" id="list"></div>
+  <div class="nav"><div><div class="navBtn">⚙</div><div class="navLabel">SETTINGS</div></div><div class="status"><div><span class="dot">●</span> STATUS: <span class="online">ONLINE</span></div><div style="margin-top:8px">MISSION: $10,000 IN 30 DAYS</div></div><div><div class="navBtn" onclick="openAdd()">＋</div><div class="navLabel">NEW IDEA</div></div></div>
+</div>
+<div class="app screen add" id="add">
+ <div class="toprow"><div class="back" onclick="openHome()">‹</div><div class="chatTitle">[LOG]</div></div>
+ <div class="money"><div class="bag">💰</div><div><div class="total">TOTAL MADE: <span id="money2">$0.00</span> CAD</div><div class="goal">GOAL: $10,000 CAD</div></div></div>
+ <div class="bar"><div class="fill" id="moneyFill2"></div></div><div class="barLabels"><span>0</span><span>10,000</span></div>
+ <div class="timerTitle">TIME LEFT TO GOAL:</div>
+ <div class="timer"><div class="timeBox"><div class="num" id="d2">--</div><div class="lab">DAYS</div></div><div class="timeBox"><div class="num" id="h2">--</div><div class="lab">HOURS</div></div><div class="timeBox"><div class="num" id="m2">--</div><div class="lab">MINUTES</div></div><div class="timeBox"><div class="num" id="s2">--</div><div class="lab">SECONDS</div></div></div>
+ <div class="mission">GOAL: $10,000 CAD IN 30 DAYS</div><div class="divider"></div><div class="upload">▱ UPLOAD / ADD IDEA</div>
+ <div class="terminal"><div class="terminalLog" id="terminal">* CONNECTED TO GPT CORE...<br>* HOW CAN I HELP YOU BUILD TODAY?<br><br><b>YOU:</b><br><span style="display:inline-block;background:var(--green);width:12px;height:28px"></span></div><div class="composer"><div class="mic">◖</div><textarea id="ideaInput" placeholder="TYPE YOUR IDEA HERE..."></textarea><button class="send" onclick="sendIdea()">⌁</button></div></div>
+ <div class="small">TEST BUILD: stores ideas locally on this device.</div>
+</div>
+<script>
+const GOAL=10000; const TOTAL=Number(localStorage.getItem('logMoney')||0);
+const ideas=JSON.parse(localStorage.getItem('logIdeas')||'["MAJOR IDEA #1","MAJOR IDEA #2","MAJOR IDEA #3","MAJOR IDEA #4","MAJOR IDEA #5","MAJOR IDEA #6","MAJOR IDEA #7","MAJOR IDEA #8"]');
+function moneyUpdate(){let pct=Math.max(0,Math.min(100,TOTAL/GOAL*100)); ['money','money2'].forEach(id=>{let e=document.getElementById(id); if(e)e.textContent='$'+TOTAL.toFixed(2)}); ['moneyFill','moneyFill2'].forEach(id=>{let e=document.getElementById(id); if(e)e.style.width=pct+'%'})}
+function targetDate(){return new Date('2026-08-04T07:00:00-04:00')}
+function tick(){let diff=Math.max(0,targetDate()-new Date());let sec=Math.floor(diff/1000);let d=Math.floor(sec/86400);sec%=86400;let h=Math.floor(sec/3600);sec%=3600;let m=Math.floor(sec/60);let s=sec%60;[['d',d],['h',h],['m',m],['s',s],['d2',d],['h2',h],['m2',m],['s2',s]].forEach(([id,v])=>{let e=document.getElementById(id); if(e)e.textContent=String(v).padStart(2,'0')})}
+function render(){let q=(document.getElementById('search')?.value||'').toUpperCase();let list=document.getElementById('list');list.innerHTML='';ideas.filter(x=>x.toUpperCase().includes(q)).forEach(name=>{let div=document.createElement('div');div.className='item';div.innerHTML='<span class="folder">▱</span><span>'+name+'</span><span class="arrow">›</span>';div.addEventListener('touchstart',()=>div.classList.add('hot'),{passive:true});div.addEventListener('touchend',()=>div.classList.remove('hot'));list.appendChild(div)})}
+function openAdd(){document.getElementById('home').classList.remove('active');document.getElementById('add').classList.add('active')} function openHome(){document.getElementById('add').classList.remove('active');document.getElementById('home').classList.add('active');render()}
+function sendIdea(){let val=document.getElementById('ideaInput').value.trim(); if(!val)return; ideas.unshift(val.toUpperCase().slice(0,40)); localStorage.setItem('logIdeas',JSON.stringify(ideas)); document.getElementById('terminal').innerHTML += '<br><b>YOU:</b><br>'+val.replace(/[<>]/g,'')+'<br><br><b>GPT CORE:</b><br>Idea saved locally. ChatGPT connection comes in the next build.<br>'; document.getElementById('ideaInput').value='';}
+document.getElementById('search').addEventListener('input',render); moneyUpdate(); tick(); render(); setInterval(tick,1000);
+</script>
+</body></html>
